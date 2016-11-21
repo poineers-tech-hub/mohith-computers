@@ -1,0 +1,93 @@
+<html>
+<head>
+
+<title>Add Stock</title>
+</head>
+<body>
+	<h2><center>Add Stock Screen</center></h2>
+	<div id="sup_invoice_details_panel" >
+		Select Supplier : <select id="suppliersList">
+			<option value="neo">NEO Marketing</option>
+		</select>
+		<table name="table_invoice">
+			<tr> 
+				<td>Invoice No.  : </td> <td> <input type="text" name="invoice_no"> </td>
+				<td>Invoice Amount : </td> <td> <input type="text" name="invoice_total_amount"> </td>
+				<td>Due Amount : </td> <td> <input type="text" name="invoice_due_amount"> </td>
+			</tr>
+			<tr>
+				<td>Invoice Date : </td> <td> <input type="text" name="invoice_date"> </td>
+				<td>Paid Amount : </td> <td> <input type="text" name="total_paid_amount"> </td>
+				<td>Payment Due Date : </td> <td> <input type="text" name="payment_due_date"> </td>
+			</tr>
+		</table>
+	</div><br/>
+	
+	<div id="stock_details_panel">
+		<table id="table_stock_details" border="1" >
+		<tr>
+			<th width='20px'>S.No.</th>
+			<th width='150px'>Product Description</th>
+			<th width='80px'>Category</th>
+			<th width='150px'>Quatity</th>
+			<th width='150px'>Unit Price(Rs)</th>
+			<th width='150px'>Qnty*Units(Rs) </th>
+			<th width='150px'>Selling Price(Rs)</th>
+			<td align="center"><input type="button" onClick="addNewItem('table_stock_details')" VALUE="Add Item"></td>
+		</tr>
+	</table>
+	
+	</div>
+	<script>
+	  var count = "0";
+	  function addNewItem(tb_stock)
+	  {
+		    count = parseInt(count) + 1;
+		  
+		    var tbody = document.getElementById(tb_stock).getElementsByTagName("TBODY")[0];
+		    var row = document.createElement("TR");
+		    
+		    var td_sno = document.createElement("TD");
+		    row.appendChild(td_sno);
+		    
+		    var td_prod_desc = document.createElement("TD");
+		    td_prod_desc.innerHTML = "<input type='text' name='prod_desc' width='150px' style='border:0px solid;'/>";
+		    row.appendChild(td_prod_desc);
+		    
+		    var td_category = document.createElement("TD");
+		    td_category.innerHTML = "<select name='quantity' style='outline:none;'><option value='keyboard'>Keyboard</option> <option value='mouse'>Mouse</option> </select>";
+		    row.appendChild(td_category);
+		    
+		    var td_qnty = document.createElement("TD");
+		    td_qnty.innerHTML = "<input type='text' name='quantity' width='20px' style='border:0px solid;'/>";
+		    row.appendChild(td_qnty);
+		    
+		    var td_unit_price = document.createElement("TD");
+		    td_unit_price.innerHTML = "<input type='text' name='unit_price' size='20px' style='border:0px solid;'/>";
+		    row.appendChild(td_unit_price);
+		    
+		    var td_sell_price = document.createElement("TD");
+		    td_sell_price.innerHTML = "<input type='text' name='selling_price' width='120px' style='border:0px solid;'/>";
+		    row.appendChild(td_sell_price);
+		    
+		    var td_qnty_unit_price = document.createElement("TD");
+		    td_qnty_unit_price.innerHTML = "<input type='text' name='qnty_unit_price' width='140px' style='border:0px solid;'/>";
+		    row.appendChild(td_qnty_unit_price);
+		    
+		    var td_btn_delete = document.createElement("TD");
+		    td_btn_delete.innerHTML = "<input type='button' class='button' onClick='delSelectedRow()' value='Delete Item'>";
+		    row.appendChild(td_btn_delete);
+		   // td5.innerHTML = strHtml5.replace(/!count!/g,count);
+		    // append data to row
+		    tbody.appendChild(row);
+	  }
+	  
+	  function delSelectedRow() {	
+	  	var current = window.event.srcElement;
+	    //here we will delete the line
+	    while ( (current = current.parentElement)  && current.tagName !="TR");
+	         current.parentElement.removeChild(current);
+	  }
+	</script>
+</body>
+</html>	
